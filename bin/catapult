@@ -1,0 +1,39 @@
+#!/usr/bin/env node
+
+var fs = require('fs');
+var yargs = require('yargs');
+
+var server = require('../lib/server');
+
+var argv = yargs
+  .usage('Serve a Catapult application from the file system')
+  .describe('r', 'The root directory of the application')
+  .default('r', process.cwd())
+  .alias('r', 'root')
+  .describe('p', 'The port the server will listen at')
+  .default('p', 8008)
+  .alias('p', 'port')
+  .describe('h', 'Print a help message and exit')
+  .alias('h', 'help')
+  .argv;
+
+if (argv.help) {
+  console.log(yargs.help());
+  process.exit(0);
+}
+
+var port = argv.port;
+var root = argv.root;
+
+if (!fs.existsSync(root)) {
+  console.error('The root directory %j does not exist', root);
+  process.exit(-1);
+}
+
+if (!fs.statSync(root).isDirectory()) {
+  console.error('The path %j is not a directory', root);
+}
+
+server({root: root, port: port});
+
+console.log('Application started at http://localhost:%s', port);

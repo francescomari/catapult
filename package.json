@@ -1,0 +1,22 @@
+{
+  "name": "objects",
+  "version": "0.0.1",
+  "author": "Francesco Mari <mari.francesco@gmail.com>",
+  "description": "Simple framework for content-based web applications",
+  "license": "MIT",
+  "main": "lib/catapult",
+  "bin": {
+    "catapult": "bin/catapult"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/francescomari/catapult.git"
+  },
+  "dependencies": {
+    "consolidate": "^0.10.0",
+    "ejs": "^1.0.0",
+    "express": "^4.6.1",
+    "morgan": "^1.2.0",
+    "yargs": "^1.2.6"
+  }
+}
